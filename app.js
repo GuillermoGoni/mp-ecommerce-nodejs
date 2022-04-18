@@ -9,6 +9,7 @@ const mercadopago = require("mercadopago");
 // Agrega credenciales
 mercadopago.configure({
   access_token: "APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398",
+  integrator_id: "dev_24c65fb163bf11ea96500242ac130004"
 });
 
 const app = express();
@@ -44,9 +45,9 @@ app.post("/create_preference", (req, res) => {
 		],
         payer: req.body.payer,
 		back_urls: {
-			"success": "http://localhost:3000/feedback",
-			"failure": "http://localhost:3000/feedback",
-			"pending": "http://localhost:3000/feedback"
+			"success": "https://mercado-pago-dev-program.herokuapp.com/feedback",
+			"failure": "https://mercado-pago-dev-program.herokuapp.com/feedback",
+			"pending": "https://mercado-pago-dev-program.herokuapp.com/feedback"
 		},
 		auto_return: "approved",
         payment_methods: {
@@ -57,12 +58,13 @@ app.post("/create_preference", (req, res) => {
             ],
             installments: 6
         },
-        notification_url: "http://localhost:3000/ipn",
+        notification_url: "https://mercado-pago-dev-program.herokuapp.com/ipn",
 	};
 
     console.log("E", preference)
 
 	mercadopago.preferences.create(preference).then((response) => {
+        console.log("response", response)
         res.status(200).json({
             id: response.body.id
         });
@@ -79,7 +81,7 @@ app.get('/feedback', (req, res) => {
 	});
 });
 
-app.get('/ipn', (req, res) => {
+app.post('/ipn', (req, res) => {
 	res.status(200).json({
 		data: req
 	});
