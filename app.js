@@ -59,15 +59,15 @@ app.post("/create_preference", (req, res) => {
             installments: 6
         },
         notification_url: "https://mercado-pago-dev-program.herokuapp.com/ipn",
+        external_reference: "guillermo.yx@gmail.com"
 	};
 
-    console.log("E", preference)
-
 	mercadopago.preferences.create(preference).then((response) => {
-        console.log("response", response)
+
         res.status(200).json({
             id: response.body.id
         });
+        
 	}).catch((error) => {
 		console.log(error);
 	});
