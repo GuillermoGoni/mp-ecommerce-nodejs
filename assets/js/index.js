@@ -5,9 +5,14 @@ const mercadopago = new MercadoPago('APP_USR-ee70a80f-0848-4b7f-991d-497696acbdc
 window.onload = () => {
 
     const ruta = window.location.pathname;
+    const securityScript = document.getElementsByTagName('script');
 
     if (ruta === '/detail') {
 
+        // Cambio el atributo view de script.
+        securityScript[1].setAttribute("view", "item");
+    
+        // Obtengo parametros del producto de la url.
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
 
@@ -63,6 +68,11 @@ window.onload = () => {
         }).catch((error) => {
             console.log("Error", error);
         });
+    } else {
+
+        // Cambio el atributo view de script.
+        securityScript[1].setAttribute("view", "home");
+
     }
 };
 

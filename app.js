@@ -82,6 +82,9 @@ app.get('/feedback', (req, res) => {
 });
 
 app.post('/ipn', (req, res) => {
+    
+    console.log("Notificacion:", req);
+
 	res.status(200).json({
 		data: req
 	});
