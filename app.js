@@ -67,17 +67,17 @@ app.post("/create_preference", (req, res) => {
         res.status(200).json({
             id: response.body.id
         });
-        
+
 	}).catch((error) => {
 		console.log(error);
 	});
 });
 
 app.get('/feedback', (req, res) => {
-	res.status(200).json({
-		Payment: req.query.payment_id,
-		Status: req.query.status,
-		MerchantOrder: req.query.merchant_order_id
+	res.render('feedback', {
+		payment: req.query.payment_type,
+        externalReference: req.query.external_reference,
+		paymentId: req.query.payment_id
 	});
 });
 

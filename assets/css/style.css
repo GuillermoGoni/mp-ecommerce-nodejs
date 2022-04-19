@@ -1,0 +1,24 @@
+.failure {
+    display: none;
+}
+
+.pending {
+    display: none;
+}
+
+.success {
+    display: none;
+}
+
+.feedback-img {
+    width: 120px;
+}
+
+.box-img {
+    text-align: center;
+    padding: 50px;
+}
+
+.box-text-feedback {
+    text-align: center;
+}

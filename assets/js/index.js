@@ -68,6 +68,29 @@ window.onload = () => {
         }).catch((error) => {
             console.log("Error", error);
         });
+
+    } else if (ruta === '/feedback') {
+
+        // Cambio el atributo view de script.
+        securityScript[1].setAttribute("view", "");
+
+        // Obtengo parametros del feedback de la url.
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        // Muestro pantalla segun respuesta a compra.
+        switch (urlParams.get("status")) {
+            case "approved":
+                $(".success").show(500).fadeIn();
+                break;
+            case "in_process":
+                $(".pending").show(500).fadeIn();
+                break;
+            default:
+                $(".failure").show(500).fadeIn();
+                break;
+        }
+
     } else {
 
         // Cambio el atributo view de script.
